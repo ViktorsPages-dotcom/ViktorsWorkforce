@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOW HIRING – Apply Today!</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --orange: #FF6B00;
+    --red: #E5003B;
+    --blue: #0057FF;
+    --navy: #0A0A2E;
+    --cyan: #00E5FF;
+    --green: #00C853;
+    --white: #FFFFFF;
+    --light: #F5F7FF;
+    --card-bg: rgba(255,255,255,0.07);
+    --radius: 18px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(0,87,255,0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(229,0,59,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgPulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgPulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  /* ===== FLOATING PARTICLES ===== */
+  .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10,10,46,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideDown 0.6s ease;
+  }
+  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+  .logo-area { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+    animation: logoPulse 2s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(255,215,0,0.4); }
+    50% { box-shadow: 0 4px 40px rgba(255,215,0,0.8); }
+  }
+  .logo-text { font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px; color: var(--gold); }
+  .logo-sub { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; }
+
+  .nav-badge {
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: badgePulse 1.5s ease-in-out infinite;
+  }
+  @keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section { position: relative; z-index: 1; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,87,255,0.15));
+    border: 1px solid rgba(0,229,255,0.4);
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease both;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(52px, 12vw, 110px);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+
+  .hero h1 .line1 { color: var(--white); display: block; }
+  .hero h1 .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--gold), var(--orange), var(--red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(255,107,0,0.5));
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 3.5vw, 20px);
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    animation: fadeInUp 0.7s ease 0.2s both;
+  }
+
+  .hero-highlight {
+    font-weight: 800;
+    color: var(--cyan);
+    font-size: clamp(14px, 3vw, 18px);
+    margin-bottom: 36px;
+    animation: fadeInUp 0.7s ease 0.3s both;
+    letter-spacing: 1px;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: var(--navy);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 3px;
+    padding: 18px 50px;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 40px rgba(255,107,0,0.5);
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 15px 60px rgba(255,107,0,0.7); }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-secondary {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-bottom: 1px dashed rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--cyan); }
+
+  .hero-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeInUp 0.7s ease 0.5s both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+  .divider { width: 1px; height: 50px; background: rgba(255,255,255,0.1); margin: auto 0; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header { text-align: center; margin-bottom: 50px; }
+  .section-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,107,0,0.15));
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(36px, 8vw, 60px);
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  .section-title span {
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-wrap {
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    padding: 14px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 40px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .marquee-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--navy); opacity: 0.4; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ===== JOB CATEGORIES ===== */
+  .jobs-section { padding: 80px 20px; }
+
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .job-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .job-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,107,0,0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .job-card:hover, .job-card.selected {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(255,215,0,0.2);
+  }
+  .job-card:hover::before, .job-card.selected::before { opacity: 1; }
+  .job-card.selected { border-color: var(--cyan); background: rgba(0,229,255,0.1); }
+
+  .job-icon { font-size: 36px; margin-bottom: 10px; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+  .job-title { font-weight: 800; font-size: 13px; letter-spacing: 0.5px; color: var(--white); }
+  .job-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+  .job-card.selected .job-title { color: var(--cyan); }
+
+  /* ===== URGENCY BANNER ===== */
+  .urgency-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .urgency-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(229,0,59,0.2), rgba(255,107,0,0.2));
+    border: 2px solid rgba(229,0,59,0.4);
+    border-radius: 24px;
+    padding: 50px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .urgency-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(229,0,59,0.1), transparent 30%);
+    animation: rotateBg 6s linear infinite;
+  }
+  @keyframes rotateBg { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  .urgency-label {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--red);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .urgency-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(40px, 10vw, 72px);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .urgency-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+
+  .btn-big {
+    background: linear-gradient(135deg, var(--gold), var(--orange), var(--red));
+    background-size: 200% auto;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 26px;
+    letter-spacing: 4px;
+    padding: 22px 60px;
+    border-radius: 70px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+    box-shadow: 0 10px 50px rgba(255,107,0,0.5);
+    animation: shimmer 3s linear infinite;
+  }
+  .btn-big:hover { background-position: right center; transform: scale(1.05); box-shadow: 0 15px 60px rgba(229,0,59,0.6); }
+  @keyframes shimmer { 0%, 100% { box-shadow: 0 10px 50px rgba(255,107,0,0.5); } 50% { box-shadow: 0 10px 50px rgba(229,0,59,0.6), 0 0 80px rgba(255,215,0,0.3); } }
+
+  /* ===== FORM MODAL OVERLAY ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal-box {
+    background: #0E0E30;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 750px;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(40px) scale(0.97);
+    transition: transform 0.4s ease;
+    margin: auto;
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+
+  .modal-header {
+    background: linear-gradient(135deg, #0057FF, #002080);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+  }
+  .modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--orange), var(--red));
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.25); }
+
+  .modal-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+  .modal-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.05);
+    height: 4px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--orange));
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ===== FORM STEPS ===== */
+  .form-step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    flex-wrap: wrap;
+  }
+  .step-dot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    transition: color 0.3s;
+  }
+  .step-dot.active { color: var(--gold); }
+  .step-dot.done { color: var(--green); }
+  .step-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    transition: all 0.3s;
+  }
+  .step-dot.active .step-num { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .step-dot.done .step-num { background: var(--green); color: white; border-color: var(--green); }
+  .step-line { width: 20px; height: 1px; background: rgba(255,255,255,0.1); align-self: center; }
+
+  .form-body { padding: 30px; }
+
+  /* FORM SECTION */
+  .form-section {
+    display: none;
+  }
+  .form-section.active { display: block; animation: fadeInUp 0.4s ease; }
+
+  .form-section-title {
+    font-family: 'Righteous', cursive;
+    font-size: 18px;
+    color: var(--cyan);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,229,255,0.3), transparent);
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-grid.single { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  label .req { color: var(--red); margin-left: 3px; }
+
+  input, select, textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    padding: 13px 16px;
+    width: 100%;
+    transition: all 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--cyan);
+    background: rgba(0,229,255,0.05);
+    box-shadow: 0 0 0 4px rgba(0,229,255,0.1);
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+  select option { background: #1a1a3e; color: white; }
+  textarea { resize: vertical; min-height: 100px; }
+
+  /* RADIO & CHECKBOX GROUP */
+  .radio-group, .check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .radio-item, .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .radio-item:has(input:checked), .check-item:has(input:checked) {
+    border-color: var(--gold);
+    background: rgba(255,215,0,0.12);
+    color: var(--gold);
+  }
+  .radio-item input, .check-item input { width: auto; display: none; }
+
+  /* FILE UPLOAD */
+  .file-upload {
+    border: 2px dashed rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+  .file-upload:hover, .file-upload.dragover {
+    border-color: var(--cyan);
+    background: rgba(0,229,255,0.05);
+  }
+  .file-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .file-upload-icon { font-size: 36px; margin-bottom: 10px; }
+  .file-upload-text { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.7); }
+  .file-upload-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 6px; }
+  .file-name {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 700;
+    display: none;
+  }
+
+  /* CONSENT */
+  .consent-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .consent-item:has(input:checked) { border-color: rgba(0,200,83,0.4); background: rgba(0,200,83,0.05); }
+  .consent-box {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 14px;
+  }
+  .consent-item:has(input:checked) .consent-box { background: var(--green); border-color: var(--green); }
+  .consent-item input { display: none; }
+  .consent-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+  /* NAV BUTTONS */
+  .form-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .btn-prev {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-prev:hover { background: rgba(255,255,255,0.15); }
+  .btn-next {
+    flex: 1;
+    background: linear-gradient(135deg, var(--blue), #0033CC);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 5px 25px rgba(0,87,255,0.4);
+  }
+  .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 35px rgba(0,87,255,0.6); }
+
+  .btn-submit {
+    flex: 1;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: var(--navy);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 28px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 5px 25px rgba(255,107,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(255,107,0,0.6); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* SPINNER */
+  .spinner {
+    width: 20px; height: 20px;
+    border: 3px solid rgba(10,10,46,0.3);
+    border-top-color: var(--navy);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ERROR */
+  .field-error {
+    font-size: 11px;
+    color: var(--red);
+    font-weight: 700;
+    display: none;
+    margin-top: 4px;
+  }
+  .has-error input, .has-error select, .has-error textarea {
+    border-color: var(--red) !important;
+    background: rgba(229,0,59,0.05) !important;
+  }
+
+  /* ===== SUCCESS ===== */
+  .success-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    text-align: center;
+    padding: 30px;
+  }
+  .success-overlay.show { opacity: 1; pointer-events: all; }
+  .success-circle {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), #00A843);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 60px rgba(0,200,83,0.5);
+    animation: successPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+  @keyframes successPop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .success-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(36px, 8vw, 60px);
+    letter-spacing: 3px;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .success-msg { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 420px; line-height: 1.6; margin-bottom: 10px; }
+  .success-ref { font-size: 13px; color: rgba(255,255,255,0.35); }
+  .success-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  /* ===== WHY US ===== */
+  .why-section { padding: 80px 20px; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .why-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 30px 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .why-card:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+  .why-icon { font-size: 44px; margin-bottom: 16px; }
+  .why-title { font-weight: 800; font-size: 16px; margin-bottom: 8px; color: var(--gold); }
+  .why-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-body { padding: 20px; }
+    .form-step-indicator { gap: 4px; }
+    .step-dot span:last-child { display: none; }
+    .btn-big { font-size: 20px; padding: 18px 36px; }
+    .hero-stats { gap: 20px; }
+  }
+
+  /* TOOLTIP */
+  .tooltip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-size: 10px;
+    font-weight: 800;
+    cursor: help;
+    margin-left: 6px;
+    position: relative;
+  }
+
+  /* NOTICE STRIP */
+  .notice-strip {
+    background: linear-gradient(90deg, rgba(0,200,83,0.15), rgba(0,87,255,0.15));
+    border: 1px solid rgba(0,200,83,0.25);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+  .notice-strip strong { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo-area">
+    <div class="logo-icon">🏢</div>
+    <div>
+      <div class="logo-text">ViktorsWorkforce</div>
+      <div class="logo-sub">Recruitment Portal</div>
+    </div>
+  </div>
+  <div class="nav-badge">🔥 Hiring Now!</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">🇵🇭 Proudly Filipino Recruitment</div>
+  <h1>
+    <span class="line1">YOUR DREAM</span>
+    <span class="line2">JOB AWAITS</span>
+  </h1>
+  <p class="hero-sub">We are hiring Filipino professionals and workers across all industries. Fast, simple, and 100% FREE to apply!</p>
+  <div class="hero-highlight">⚡ Applications open — Limited slots available!</div>
+
+  <div class="hero-cta">
+    <a href="#" class="btn-primary" onclick="openModal(); return false;">
+      🚀 APPLY NOW — It's FREE!
+    </a>
+    <a href="#jobs" class="btn-secondary">See open positions ↓</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Open Positions</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">2 MIN</div>
+      <div class="stat-label">To Apply</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Legit & Free</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">24HR</div>
+      <div class="stat-label">Response Time</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll down</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span>NOW HIRING</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>FULL TIME</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>PART TIME</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>REMOTE WORK</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>IMMEDIATE START</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>COMPETITIVE SALARY</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>BENEFITS INCLUDED</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>APPLY TODAY</div>
+    <!-- Repeat for seamless loop -->
+    <div class="marquee-item"><span class="marquee-dot"></span>NOW HIRING</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>FULL TIME</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>PART TIME</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>REMOTE WORK</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>IMMEDIATE START</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>COMPETITIVE SALARY</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>BENEFITS INCLUDED</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>APPLY TODAY</div>
+  </div>
+</div>
+
+<!-- JOB CATEGORIES -->
+<section class="jobs-section reveal" id="jobs">
+  <div class="section-header">
+    <div class="section-tag">💼 Open Positions</div>
+    <div class="section-title">WE'RE LOOKING FOR <span>YOU</span></div>
+  </div>
+  <div class="jobs-grid">
+    <div class="job-card" onclick="selectJob(this, 'Cleaner / Janitor')">
+      <span class="job-icon">🧹</span>
+      <div class="job-title">Cleaner / Janitor</div>
+      <div class="job-sub">Full Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Aircon Technician')">
+      <span class="job-icon">❄️</span>
+      <div class="job-title">Aircon Technician</div>
+      <div class="job-sub">Full Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Driver')">
+      <span class="job-icon">🚗</span>
+      <div class="job-title">Driver</div>
+      <div class="job-sub">Full Time / Part Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Service Crew')">
+      <span class="job-icon">🍽️</span>
+      <div class="job-title">Service Crew</div>
+      <div class="job-sub">Full Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Warehouse Staff')">
+      <span class="job-icon">📦</span>
+      <div class="job-title">Warehouse Staff</div>
+      <div class="job-sub">Full Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Office Staff')">
+      <span class="job-icon">🖥️</span>
+      <div class="job-title">Office Staff</div>
+      <div class="job-sub">Full Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Virtual Assistant')">
+      <span class="job-icon">💻</span>
+      <div class="job-title">Virtual Assistant</div>
+      <div class="job-sub">Remote / Part Time</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'IT Developer')">
+      <span class="job-icon">⚙️</span>
+      <div class="job-title">IT Developer</div>
+      <div class="job-sub">Full Time / Remote</div>
+    </div>
+    <div class="job-card" onclick="selectJob(this, 'Others')">
+      <span class="job-icon">✨</span>
+      <div class="job-title">Others</div>
+      <div class="job-sub">All types</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section reveal">
+  <div class="section-header">
+    <div class="section-tag">⭐ Why Apply Here?</div>
+    <div class="section-title">FAST, EASY, <span>LEGIT</span></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Apply in 2 Minutes</div>
+      <div class="why-desc">Simple mobile-friendly form. No complicated process. Just fill and submit!</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">100% Safe & Secure</div>
+      <div class="why-desc">Your personal data is protected. We follow strict data privacy guidelines.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Mobile Friendly</div>
+      <div class="why-desc">Apply using your smartphone anytime, anywhere. No laptop needed!</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Competitive Pay</div>
+      <div class="why-desc">Salaries above minimum wage. Benefits included for qualified positions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section class="urgency-section reveal">
+  <div class="urgency-card">
+    <div class="urgency-label">⚠️ Limited Slots — Don't Miss Out!</div>
+    <div class="urgency-title">APPLY IN<br><span style="background: linear-gradient(135deg,var(--gold),var(--orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">2 MINUTES</span></div>
+    <div class="urgency-desc">Our recruitment team reviews applications within 24 hours. Get hired faster by applying now before slots are filled!</div>
+    <a href="#" class="btn-big" onclick="openModal(); return false;">
+      🚀 START MY APPLICATION
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 ViktorsWorkforce Recruitment Portal • All Rights Reserved</p>
+  <p style="margin-top: 8px;"><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a> • <a href="#">Contact HR</a></p>
+  <p style="margin-top: 12px; font-size: 11px;">🇵🇭 Proudly serving Filipino job seekers nationwide</p>
+</footer>
+
+<!-- ===== APPLICATION FORM MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div style="font-size: 28px; margin-bottom: 6px;">📋</div>
+      <div class="modal-title">JOB APPLICATION FORM</div>
+      <div class="modal-sub">Complete all required fields marked with <span style="color:var(--red)">*</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+    <!-- STEP INDICATOR -->
+    <div class="form-step-indicator" id="stepIndicator">
+      <div class="step-dot active" id="sd1">
+        <div class="step-num">1</div>
+        <span>Personal</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="sd2">
+        <div class="step-num">2</div>
+        <span>Contact</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="sd3">
+        <div class="step-num">3</div>
+        <span>Job</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="sd4">
+        <div class="step-num">4</div>
+        <span>Experience</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="sd5">
+        <div class="step-num">5</div>
+        <span>Screening</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-dot" id="sd6">
+        <div class="step-num">6</div>
+        <span>Documents</span>
+      </div>
+    </div>
+
+    <form id="appForm" novalidate>
+    <div class="form-body">
+
+      <!-- STEP 1: PERSONAL -->
+      <div class="form-section active" id="step1">
+        <div class="notice-strip">🔒 <div>Your information is <strong>private and secure</strong>. We do not sell your data.</div></div>
+        <div class="form-section-title">👤 Personal Information</div>
+        <div class="form-grid">
+          <div class="form-group full" id="grp-fullname">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="fullname" placeholder="e.g. Juan Dela Cruz" autocomplete="name">
+            <div class="field-error" id="err-fullname">Please enter your full name</div>
+          </div>
+          <div class="form-group" id="grp-nickname">
+            <label>Nickname</label>
+            <input type="text" id="nickname" placeholder="e.g. Juan">
+          </div>
+          <div class="form-group" id="grp-gender">
+            <label>Gender <span class="req">*</span></label>
+            <select id="gender">
+              <option value="">-- Select --</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Prefer not to say</option>
+            </select>
+            <div class="field-error" id="err-gender">Please select your gender</div>
+          </div>
+          <div class="form-group" id="grp-dob">
+            <label>Date of Birth <span class="req">*</span></label>
+            <input type="date" id="dob">
+            <div class="field-error" id="err-dob">Please enter your date of birth</div>
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="text" id="age" placeholder="Auto-calculated" readonly style="cursor:default; background:rgba(255,255,255,0.03)">
+          </div>
+          <div class="form-group">
+            <label>Civil Status</label>
+            <select id="civil">
+              <option value="">-- Select --</option>
+              <option>Single</option>
+              <option>Married</option>
+              <option>Widowed</option>
+              <option>Separated</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nationality</label>
+            <input type="text" id="nationality" value="Filipino" placeholder="Filipino">
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-next" onclick="nextStep(1)">Next: Contact Info →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: CONTACT -->
+      <div class="form-section" id="step2">
+        <div class="form-section-title">📞 Contact Details</div>
+        <div class="form-grid">
+          <div class="form-group" id="grp-mobile">
+            <label>Mobile Number <span class="req">*</span></label>
+            <input type="tel" id="mobile" placeholder="e.g. 09XX XXX XXXX" inputmode="numeric">
+            <div class="field-error" id="err-mobile">Please enter a valid mobile number</div>
+          </div>
+          <div class="form-group" id="grp-email">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@email.com" inputmode="email">
+            <div class="field-error" id="err-email">Please enter a valid email address</div>
+          </div>
+          <div class="form-group full">
+            <label>Facebook Profile URL</label>
+            <input type="url" id="facebook" placeholder="https://facebook.com/yourname" inputmode="url">
+          </div>
+          <div class="form-group full">
+            <label>Current Address <span class="req">*</span></label>
+            <input type="text" id="address" placeholder="House #, Street, Barangay">
+            <div class="field-error" id="err-address">Please enter your address</div>
+          </div>
+          <div class="form-group">
+            <label>City / Province</label>
+            <input type="text" id="city" placeholder="e.g. Quezon City, Metro Manila">
+          </div>
+          <div class="form-group">
+            <label>Willing to Relocate?</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="relocate" value="Yes"> ✅ Yes</label>
+              <label class="radio-item"><input type="radio" name="relocate" value="No"> ❌ No</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-prev" onclick="prevStep(2)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(2)">Next: Job Info →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: JOB INFO -->
+      <div class="form-section" id="step3">
+        <div class="form-section-title">💼 Job Information</div>
+        <div class="form-grid">
+          <div class="form-group full" id="grp-position">
+            <label>Position Applying For <span class="req">*</span></label>
+            <select id="position">
+              <option value="">-- Select Position --</option>
+              <option>Cleaner / Janitor</option>
+              <option>Aircon Technician</option>
+              <option>Driver</option>
+              <option>Service Crew</option>
+              <option>Warehouse Staff</option>
+              <option>Office Staff</option>
+              <option>Virtual Assistant</option>
+              <option>IT Developer</option>
+              <option>Others</option>
+            </select>
+            <div class="field-error" id="err-position">Please select the position you're applying for</div>
+          </div>
+          <div class="form-group">
+            <label>Expected Salary (Monthly)</label>
+            <input type="text" id="salary" placeholder="e.g. ₱18,000 – ₱25,000">
+          </div>
+          <div class="form-group">
+            <label>Availability</label>
+            <select id="availability">
+              <option value="">-- Select --</option>
+              <option>Immediate (ASAP)</option>
+              <option>2 Weeks Notice</option>
+              <option>1 Month Notice</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Employment Type Preferred</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="emptype" value="Full Time"> 🏢 Full Time</label>
+              <label class="radio-item"><input type="radio" name="emptype" value="Part Time"> ⏰ Part Time</label>
+              <label class="radio-item"><input type="radio" name="emptype" value="Project Based"> 📁 Project Based</label>
+              <label class="radio-item"><input type="radio" name="emptype" value="Remote"> 🌐 Remote</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-prev" onclick="prevStep(3)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(3)">Next: Experience →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: EXPERIENCE -->
+      <div class="form-section" id="step4">
+        <div class="form-section-title">🎓 Work Experience & Education</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Years of Experience</label>
+            <select id="experience">
+              <option value="">-- Select --</option>
+              <option>No Experience (Fresh Graduate / Entry Level)</option>
+              <option>Less than 1 Year</option>
+              <option>1–2 Years</option>
+              <option>3–5 Years</option>
+              <option>5–10 Years</option>
+              <option>10+ Years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Current Employment Status</label>
+            <select id="empstatus">
+              <option value="">-- Select --</option>
+              <option>Currently Employed</option>
+              <option>Currently Unemployed</option>
+              <option>Freelancer / Self-employed</option>
+              <option>Student</option>
+              <option>OFW (Returning)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Previous Company Name</label>
+            <input type="text" id="prevcompany" placeholder="Company name">
+          </div>
+          <div class="form-group">
+            <label>Previous Job Title</label>
+            <input type="text" id="prevtitle" placeholder="e.g. Sales Associate">
+          </div>
+          <div class="form-group full">
+            <label>Key Skills <span class="req">*</span></label>
+            <textarea id="skills" placeholder="e.g. Customer Service, MS Office, Driving, Cooking, Social Media..." rows="3"></textarea>
+            <div class="field-error" id="err-skills">Please list at least one skill</div>
+          </div>
+          <div class="form-group">
+            <label>Certifications / TESDA / Licenses</label>
+            <input type="text" id="certs" placeholder="e.g. NC II Cookery, Driver's License">
+          </div>
+          <div class="form-group">
+            <label>Highest Education Level</label>
+            <select id="education">
+              <option value="">-- Select --</option>
+              <option>Elementary Level / Graduate</option>
+              <option>High School Level / Graduate</option>
+              <option>Senior High School Graduate</option>
+              <option>Vocational / Tech-Voc Graduate</option>
+              <option>College Level</option>
+              <option>College Graduate</option>
+              <option>Post Graduate</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Course / Degree</label>
+            <input type="text" id="course" placeholder="e.g. BS Business Administration">
+          </div>
+          <div class="form-group full">
+            <label>Languages Spoken</label>
+            <div class="check-group">
+              <label class="check-item"><input type="checkbox" name="lang" value="Filipino"> 🇵🇭 Filipino</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="English"> 🇺🇸 English</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Bisaya"> Bisaya</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Ilocano"> Ilocano</label>
+              <label class="check-item"><input type="checkbox" name="lang" value="Others"> Others</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-prev" onclick="prevStep(4)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(4)">Next: Screening →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: SCREENING -->
+      <div class="form-section" id="step5">
+        <div class="form-section-title">🎯 Screening Questions</div>
+        <div class="form-grid single">
+          <div class="form-group">
+            <label>Why should we hire you? <span class="req">*</span></label>
+            <textarea id="whyhire" placeholder="Tell us what makes you a great candidate..." rows="3"></textarea>
+            <div class="field-error" id="err-whyhire">Please answer this question</div>
+          </div>
+          <div class="form-group">
+            <label>Describe your strongest skill</label>
+            <textarea id="strongskill" placeholder="Your most valuable skill and how you use it..." rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Willing to work overtime?</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="overtime" value="Yes"> ✅ Yes</label>
+              <label class="radio-item"><input type="radio" name="overtime" value="No"> ❌ No</label>
+              <label class="radio-item"><input type="radio" name="overtime" value="Depends"> 🤔 Depends</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Have you worked abroad (OFW)?</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="ofw" value="Yes"> ✅ Yes</label>
+              <label class="radio-item"><input type="radio" name="ofw" value="No"> ❌ No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Internet Speed (for remote jobs)</label>
+            <select id="internet">
+              <option value="">-- Select --</option>
+              <option>No internet at home</option>
+              <option>Slow (below 5 Mbps)</option>
+              <option>Moderate (5–25 Mbps)</option>
+              <option>Fast (25–100 Mbps)</option>
+              <option>Very Fast (100+ Mbps)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Computer / Laptop Available?</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="computer" value="Yes"> ✅ Yes</label>
+              <label class="radio-item"><input type="radio" name="computer" value="No"> ❌ No</label>
+              <label class="radio-item"><input type="radio" name="computer" value="Smartphone Only"> 📱 Phone Only</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Shift Availability</label>
+            <div class="check-group">
+              <label class="check-item"><input type="checkbox" name="shift" value="Day"> ☀️ Day Shift</label>
+              <label class="check-item"><input type="checkbox" name="shift" value="Night"> 🌙 Night Shift</label>
+              <label class="check-item"><input type="checkbox" name="shift" value="Flexible"> 🔄 Flexible</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-prev" onclick="prevStep(5)">← Back</button>
+          <button type="button" class="btn-next" onclick="nextStep(5)">Next: Documents →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: DOCUMENTS -->
+      <div class="form-section" id="step6">
+        <div class="form-section-title">📎 Document Upload</div>
+        <div class="notice-strip">💡 <div>Resume is <strong>required</strong>. Other documents are optional but will strengthen your application.</div></div>
+        <div class="form-grid single">
+          <div class="form-group" id="grp-resume">
+            <label>Resume / CV <span class="req">*</span></label>
+            <div class="file-upload" id="resumeZone" ondragover="handleDrag(event,this)" ondragleave="leaveDrag(this)" ondrop="handleDrop(event,'resume')">
+              <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" onchange="showFileName('resumeFile','resumeFileName')">
+              <div class="file-upload-icon">📄</div>
+              <div class="file-upload-text">Tap to upload your Resume</div>
+              <div class="file-upload-sub">Accepted: PDF, DOC, DOCX (Max 5MB)</div>
+              <div class="file-name" id="resumeFileName"></div>
+            </div>
+            <div class="field-error" id="err-resume">Please upload your resume</div>
+          </div>
+          <div class="form-group">
+            <label>Portfolio (Optional)</label>
+            <div class="file-upload" ondragover="handleDrag(event,this)" ondragleave="leaveDrag(this)">
+              <input type="file" id="portfolioFile" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="showFileName('portfolioFile','portfolioFileName')">
+              <div class="file-upload-icon">🗂️</div>
+              <div class="file-upload-text">Tap to upload Portfolio</div>
+              <div class="file-upload-sub">PDF, DOC, or Image (Max 5MB)</div>
+              <div class="file-name" id="portfolioFileName"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Valid ID Photo (Optional)</label>
+            <div class="file-upload" ondragover="handleDrag(event,this)" ondragleave="leaveDrag(this)">
+              <input type="file" id="idFile" accept="image/*,.pdf" onchange="showFileName('idFile','idFileName')">
+              <div class="file-upload-icon">🪪</div>
+              <div class="file-upload-text">Tap to upload Valid ID</div>
+              <div class="file-upload-sub">Photo or PDF (Max 5MB)</div>
+              <div class="file-name" id="idFileName"></div>
+            </div>
+          </div>
+
+          <!-- CONSENT -->
+          <div>
+            <div class="form-section-title" style="margin-top:10px;">✅ Declaration & Consent</div>
+            <label class="consent-item" id="consent1item" onclick="toggleConsent('consent1','c1box')">
+              <div class="consent-box" id="c1box"></div>
+              <input type="checkbox" id="consent1">
+              <div class="consent-text">I confirm that all information I have provided in this form is true, accurate, and complete to the best of my knowledge.</div>
+            </label>
+            <label class="consent-item" id="consent2item" onclick="toggleConsent('consent2','c2box')">
+              <div class="consent-box" id="c2box"></div>
+              <input type="checkbox" id="consent2">
+              <div class="consent-text">I agree to the <a href="#" style="color:var(--cyan)">Data Privacy Policy</a>. I consent to the collection and processing of my personal data for recruitment purposes.</div>
+            </label>
+            <div class="field-error" id="err-consent">Please check both boxes to proceed</div>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-prev" onclick="prevStep(6)">← Back</button>
+          <button type="button" class="btn-submit" id="submitBtn" onclick="submitForm()">
+            <div class="spinner" id="submitSpinner"></div>
+            <span id="submitText">🚀 SUBMIT APPLICATION</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    </form>
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-circle">✅</div>
+  <div class="success-title">APPLICATION SUBMITTED!</div>
+  <div class="success-msg">Thank you for applying! Our recruitment team will review your application and contact you within <strong>24–48 hours</strong>.</div>
+  <div class="success-ref" id="successRef"></div>
+  <div class="success-actions">
+    <button class="btn-primary" onclick="closeSuccess()">Done 🎉</button>
+  </div>
+</div>
+
+<!-- ===== GOOGLE APPS SCRIPT CODE COMMENT =====
+PASTE THIS IN YOUR GOOGLE APPS SCRIPT:
+
+const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID';
+const FOLDER_ID = 'YOUR_GOOGLE_DRIVE_FOLDER_ID';
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName('Applications') || SpreadsheetApp.openById(SHEET_ID).insertSheet('Applications');
+    const folder = DriveApp.getFolderById(FOLDER_ID);
+
+    let resumeLink = '';
+    if (data.resumeBase64) {
+      const blob = Utilities.newBlob(Utilities.base64Decode(data.resumeBase64), data.resumeMime, data.resumeName);
+      const file = folder.createFile(blob);
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      resumeLink = file.getUrl();
+    }
+
+    const timestamp = new Date();
+    const refNum = 'APP-' + timestamp.getTime();
+
+    sheet.appendRow([
+      timestamp, refNum, data.fullname, data.mobile, data.email, data.facebook,
+      data.address + ', ' + data.city, data.position, data.experience,
+      data.skills, data.education, data.availability, data.salary,
+      resumeLink, data.whyhire, data.emptype, data.relocate
+    ]);
+
+    // Auto-email applicant (optional)
+    if (data.email) {
+      MailApp.sendEmail({
+        to: data.email,
+        subject: '✅ Application Received – ' + data.position,
+        htmlBody: '<h2>Hi ' + data.fullname + '!</h2><p>We received your application for <strong>' + data.position + '</strong>. Your reference number is <strong>' + refNum + '</strong>. Our team will contact you within 24-48 hours. Good luck!</p><br><p>– ViktorsWorkforce Recruitment Team</p>'
+      });
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ success: true, ref: refNum })).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({ success: false, error: err.message })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+===== END SCRIPT ===== -->
+
+<script>
+// ===== PARTICLES =====
+(function() {
+  const container = document.getElementById('particles');
+  const colors = ['#FFD700','#FF6B00','#0057FF','#00E5FF','#E5003B'];
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 60 + 15;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*20+15}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// ===== SCROLL REVEAL =====
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// ===== AGE AUTO CALCULATE =====
+document.getElementById('dob').addEventListener('change', function() {
+  const dob = new Date(this.value);
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+  if (age > 0 && age < 100) document.getElementById('age').value = age + ' years old';
+});
+
+// ===== JOB CARD SELECTION =====
+let selectedJob = '';
+function selectJob(card, job) {
+  document.querySelectorAll('.job-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedJob = job;
+  document.getElementById('position').value = job;
+}
+
+// ===== MODAL =====
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===== STEP MANAGEMENT =====
+let currentStep = 1;
+const totalSteps = 6;
+
+function updateProgress() {
+  const pct = ((currentStep - 1) / (totalSteps - 1)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  for (let i = 1; i <= totalSteps; i++) {
+    const sd = document.getElementById('sd' + i);
+    sd.classList.remove('active', 'done');
+    if (i < currentStep) sd.classList.add('done'), sd.querySelector('.step-num').textContent = '✓';
+    else if (i === currentStep) sd.classList.add('active');
+    else sd.querySelector('.step-num').textContent = i;
+  }
+}
+
+function showStep(n) {
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  currentStep = n;
+  updateProgress();
+  document.querySelector('.modal-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function nextStep(from) {
+  if (!validateStep(from)) return;
+  showStep(from + 1);
+}
+function prevStep(from) { showStep(from - 1); }
+
+// ===== VALIDATION =====
+function validateStep(step) {
+  let valid = true;
+
+  function err(id, show) {
+    const el = document.getElementById('err-' + id);
+    const grp = document.getElementById('grp-' + id);
+    if (el) el.style.display = show ? 'block' : 'none';
+    if (grp) grp.classList.toggle('has-error', show);
+    if (show) valid = false;
+  }
+
+  if (step === 1) {
+    err('fullname', !document.getElementById('fullname').value.trim());
+    err('gender', !document.getElementById('gender').value);
+    err('dob', !document.getElementById('dob').value);
+  }
+  if (step === 2) {
+    const mob = document.getElementById('mobile').value.trim();
+    err('mobile', !/^(09|\+639)\d{9}$/.test(mob.replace(/\s/g, '')));
+    const em = document.getElementById('email').value.trim();
+    err('email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em));
+    err('address', !document.getElementById('address').value.trim());
+  }
+  if (step === 3) {
+    err('position', !document.getElementById('position').value);
+  }
+  if (step === 4) {
+    err('skills', !document.getElementById('skills').value.trim());
+  }
+  if (step === 5) {
+    err('whyhire', !document.getElementById('whyhire').value.trim());
+  }
+
+  return valid;
+}
+
+// ===== FILE UPLOAD =====
+function showFileName(inputId, nameId) {
+  const file = document.getElementById(inputId).files[0];
+  const nameEl = document.getElementById(nameId);
+  if (file) {
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File is too large. Maximum size is 5MB.');
+      document.getElementById(inputId).value = '';
+      return;
+    }
+    nameEl.textContent = '✅ ' + file.name;
+    nameEl.style.display = 'block';
+  }
+}
+
+function handleDrag(e, zone) { e.preventDefault(); zone.classList.add('dragover'); }
+function leaveDrag(zone) { zone.classList.remove('dragover'); }
+function handleDrop(e, type) {
+  e.preventDefault();
+  leaveDrag(document.getElementById(type === 'resume' ? 'resumeZone' : ''));
+}
+
+// ===== CONSENT =====
+function toggleConsent(checkId, boxId) {
+  const chk = document.getElementById(checkId);
+  const box = document.getElementById(boxId);
+  chk.checked = !chk.checked;
+  box.textContent = chk.checked ? '✓' : '';
+}
+
+// ===== SUBMIT =====
+let submitted = false;
+function submitForm() {
+  if (submitted) return;
+
+  // Validate step 6
+  const resumeFile = document.getElementById('resumeFile').files[0];
+  const c1 = document.getElementById('consent1').checked;
+  const c2 = document.getElementById('consent2').checked;
+  let valid = true;
+
+  const errResume = document.getElementById('err-resume');
+  const errConsent = document.getElementById('err-consent');
+
+  if (!resumeFile) {
+    errResume.style.display = 'block';
+    document.getElementById('grp-resume').classList.add('has-error');
+    valid = false;
+  } else {
+    errResume.style.display = 'none';
+    document.getElementById('grp-resume').classList.remove('has-error');
+  }
+
+  if (!c1 || !c2) {
+    errConsent.style.display = 'block';
+    valid = false;
+  } else {
+    errConsent.style.display = 'none';
+  }
+
+  if (!valid) return;
+
+  // Collect form data
+  const getChecked = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(e => e.value).join(', ');
+
+  const formData = {
+    fullname: document.getElementById('fullname').value,
+    nickname: document.getElementById('nickname').value,
+    gender: document.getElementById('gender').value,
+    dob: document.getElementById('dob').value,
+    age: document.getElementById('age').value,
+    civil: document.getElementById('civil').value,
+    nationality: document.getElementById('nationality').value,
+    mobile: document.getElementById('mobile').value,
+    email: document.getElementById('email').value,
+    facebook: document.getElementById('facebook').value,
+    address: document.getElementById('address').value,
+    city: document.getElementById('city').value,
+    relocate: getChecked('relocate') || document.querySelector('input[name="relocate"]:checked')?.value || '',
+    position: document.getElementById('position').value,
+    salary: document.getElementById('salary').value,
+    availability: document.getElementById('availability').value,
+    emptype: getChecked('emptype'),
+    experience: document.getElementById('experience').value,
+    empstatus: document.getElementById('empstatus').value,
+    prevcompany: document.getElementById('prevcompany').value,
+    prevtitle: document.getElementById('prevtitle').value,
+    skills: document.getElementById('skills').value,
+    certs: document.getElementById('certs').value,
+    education: document.getElementById('education').value,
+    course: document.getElementById('course').value,
+    languages: getChecked('lang'),
+    whyhire: document.getElementById('whyhire').value,
+    strongskill: document.getElementById('strongskill').value,
+    overtime: document.querySelector('input[name="overtime"]:checked')?.value || '',
+    ofw: document.querySelector('input[name="ofw"]:checked')?.value || '',
+    internet: document.getElementById('internet').value,
+    computer: document.querySelector('input[name="computer"]:checked')?.value || '',
+    shift: getChecked('shift'),
+    resumeName: resumeFile.name,
+    resumeMime: resumeFile.type || 'application/octet-stream'
+  };
+
+  // Show loading
+  submitted = true;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  document.getElementById('submitSpinner').style.display = 'block';
+  document.getElementById('submitText').textContent = 'Submitting...';
+
+  // Read file as base64
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    formData.resumeBase64 = ev.target.result.split(',')[1];
+
+    // ======================================================
+    // REPLACE THIS URL WITH YOUR DEPLOYED APPS SCRIPT URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRU3zT-jd9PdvAQeRzypZ7QMevw5vHO6RV922_qoBeWbUMsnlm3arOZVsfwkCpikmS/exec';
+    // ======================================================
+
+    if (SCRIPT_URL === 'YOUR_APPS_SCRIPT_DEPLOYED_URL') {
+      // DEMO MODE: Simulate success after 2 seconds
+      setTimeout(() => {
+        showSuccess('DEMO-' + Date.now());
+      }, 2000);
+      return;
+    }
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(res => {
+      if (res.success) showSuccess(res.ref);
+      else throw new Error(res.error);
+    })
+    .catch(err => {
+      alert('Submission error: ' + err.message + '\nPlease try again or contact us.');
+      btn.disabled = false;
+      submitted = false;
+      document.getElementById('submitSpinner').style.display = 'none';
+      document.getElementById('submitText').textContent = '🚀 SUBMIT APPLICATION';
+    });
+  };
+  reader.readAsDataURL(resumeFile);
+}
+
+function showSuccess(ref) {
+  closeModal();
+  document.body.style.overflow = 'hidden';
+  const overlay = document.getElementById('successOverlay');
+  overlay.classList.add('show');
+  if (ref) document.getElementById('successRef').textContent = 'Reference #: ' + ref;
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Initialize
+updateProgress();
+</script>
+</body>
+</html>
